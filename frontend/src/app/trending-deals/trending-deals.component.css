@@ -1,0 +1,15 @@
+.carousel-inner img {
+      width: 100%;
+      height: 100%;
+
+  }
+.col-md-4{float:right;}
+.carousel slide carousel-multi-item{
+      padding-bottom:5%;
+
+}
+.trending-heading{
+      text-align: center;
+      align-self: auto;
+      padding: 2rem;
+}

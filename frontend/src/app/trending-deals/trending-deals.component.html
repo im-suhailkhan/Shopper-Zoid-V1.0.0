@@ -1,0 +1,37 @@
+<div class="trending-heading"><h1>Trending deals</h1></div>
+<div
+  ng2-carouselamos
+  [width]="900"
+  [items]= "products"
+  [$item]="itemTemplate"
+  [$prev]="prevTemplate"
+  [$next]="nextTemplate"
+  (onSelectedItem)="selectedItem = $event.item; selectedIndex = $event.index"
+></div>
+<ng-template #prevTemplate>
+    <button type="button" class="btn btn-default btn-sm">
+        <span class="fa fa-chevron-left"></span>
+      </button>
+</ng-template>
+ 
+<ng-template #nextTemplate>
+    <button type="button" class="btn btn-default btn-sm">
+        <span class="fa fa-chevron-right"></span>
+      </button>
+</ng-template>
+ 
+<ng-template let-item let-i="index" #itemTemplate>
+  <div style="min-width: 300px; min-height: 300px;">
+    <div class="card" style="width: 14rem;">
+      <img [src]="item.image" class="card-img-top img-thumbnail" alt="shooperZoid">
+      <div class="card-body">
+        <h5 class="card-title">{{item.name}}</h5>
+        <p class="card-text">{{item.description}}</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    
+  </div>
+
+  
+</ng-template>

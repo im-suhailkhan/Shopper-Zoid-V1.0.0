@@ -1,0 +1,13 @@
+.container {
+    background-image: url(src/assets/logo.jpg);
+    background-size: 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+h1 {
+    text-align: center;
+    font-weight: bold;
+    padding-top:20%;
+    padding-bottom: 20%;
+}

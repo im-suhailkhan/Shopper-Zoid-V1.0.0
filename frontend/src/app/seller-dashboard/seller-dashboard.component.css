@@ -1,0 +1,26 @@
+.navbar-dark {
+    background-color: #666666;
+    color: white;
+    font-weight: bold;
+    position: fixed;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.form-button-hint {
+    font-size: 10px;
+}
+
+.container {
+    background-image: url("src/assets/seller-dashboard/nick-kane-TRP_tiirOlk-unsplash.jpg");
+    background-size: 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    /* background-color: black;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    /* background-size: cover; */
+    color: white;
+    margin-top: 6.5rem;
+}

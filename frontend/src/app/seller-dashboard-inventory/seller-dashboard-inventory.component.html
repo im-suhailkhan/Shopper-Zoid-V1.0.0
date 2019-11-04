@@ -1,0 +1,129 @@
+<!--Seller Dashboard Main-Heading (Made an anchor-tag to reload the default view)-->
+<h2 style="text-align: center;">
+    <a style="font-weight: bold;" (click)="reload()" class="nav-link"></a>
+</h2>
+    
+<!--Seller Dashboard mini-navbar-->
+<nav class="navbar navbar-expand-md navbar-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#seller-dashboard-navbar" aria-controls="seller-dashboard-navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    
+    <div class="collapse navbar-collapse" id="seller-dashboard-navbar">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/seller-dashboard">Home</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Catalogue</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link abc" routerLink="/seller-dashboard-inventory">Inventory</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Orders</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Performance</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Help</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/login-page">Logout</a>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- <div class="navbar-brand pull-right">
+        Hello {{sellerName}}!
+    </div> -->
+</nav><!--Seller Dashboard mini-navbar -- End-->
+
+<!--Seller Dashboard Inventory View-->
+<section class="container">
+    <h3 class="mt-2 pt-1 mb-4">Inventory</h3>
+    
+    <!--Inventory Summary-->
+    <section class="row mb-3">
+        <p>Total Items in the Inventory: {{InStock}}</p>
+    </section>
+
+    <!--Update Item Button-->
+    <!-- <section class="row mb-3">
+        <form>
+            <button type="button" class="btn btn-secondary" (click)="updateProduct()">Update Item</button>
+        </form>
+    </section> -->
+
+    <!--Relevant Data section-->
+    <section class="row">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+                
+                <!-- Product Name Column -->
+                <ng-container matColumnDef="productName">
+                    <th mat-header-cell *matHeaderCellDef> Product Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+                </ng-container>
+                
+                <!-- Product Image Column -->
+                <ng-container matColumnDef="productImage">
+                    <th mat-header-cell *matHeaderCellDef> Product Image </th>
+                    <td mat-cell *matCellDef="let element"> {{element.productImage}} </td>
+                </ng-container>
+                
+                <!-- Product Description Column -->
+                <ng-container matColumnDef="productDescription">
+                    <th mat-header-cell *matHeaderCellDef> Product Description </th>
+                    <td mat-cell *matCellDef="let element"> {{element.productDescription}} </td>
+                </ng-container>
+                
+                <!-- Product Category Column -->
+                <ng-container matColumnDef="productCategory">
+                    <th mat-header-cell *matHeaderCellDef> Product Category </th>
+                    <td mat-cell *matCellDef="let element"> {{element.productCategory}} </td>
+                </ng-container>
+
+                <!-- Product Subcategory Column -->
+                <ng-container matColumnDef="productSubcategory">
+                    <th mat-header-cell *matHeaderCellDef> Product Subcategory </th>
+                    <td mat-cell *matCellDef="let element"> {{element.productSubcategory}} </td>
+                </ng-container>
+                
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        <!-- <div style="display: block">
+            <canvas mdbChart
+                [chartType]="chartType"
+                [datasets]="chartDatasets"
+                [labels]="chartLabels"
+                [colors]="chartColors"
+                [options]="chartOptions"
+                [legend]="true"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+            </canvas>
+        </div> -->
+    </section>
+
+    <!--Add Item Button-->
+    <section class="row mt-3 pb-3">
+        <form>
+            <button type="button" class="btn btn-primary" (click)="addProduct()">Add Item</button>
+        </form>
+    </section>
+</section>

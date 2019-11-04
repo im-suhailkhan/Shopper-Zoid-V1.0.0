@@ -1,0 +1,181 @@
+<div class="container emp-profile">
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img src="assets/buyer-profile/user.jpg" alt="" />
+                    <div class="file btn btn-lg btn-primary">
+                        Change Photo
+                        <input type="file" name="file" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 profile-work buyer pull-right">
+                <p>Hello {{buyer.buyerName}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-work">
+                    <p>Account Setting</p>
+                    <a (click)="toggleEditableProfile()">Profile Information</a><br /><br>
+                    <a (click)="toggleEditableAddress()">Manage Address</a><br /><br>
+                    <a (click)="toggleEditablePayment()">Payment Method</a><br><br>
+                    <a (click)="toggleEditableOrders()">My Orders</a>
+                    <!-- <p><a >My Wishlist</a></p>
+                            <p><a >My Review</a></p> -->
+                </div>
+            </div>
+            <div class="col-md-8" *ngIf="editableProfile">
+                <div class="profile-tab">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Email</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" placeholder="{{buyer.buyerEmail}}"
+                                [attr.disabled]="false">
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Name</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" placeholder="{{buyer.buyerName}}"
+                                [attr.disabled]="false">
+                        </div>
+                    </div><br>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Phone</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" placeholder="{{buyer.buyerPhone}}"
+                                [attr.disabled]="false">
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Gender</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input #gender class="form-control" type="text" placeholder="{{buyer.buyerGender}}"
+                                [attr.disabled]="!editable?'':null">
+                            <!-- <select #gender class="custom-select" *ngIf="!editableEdit" required #gender>
+                                <option selected>Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select> -->
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Date of Birth</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input #dob class="form-control" type="date" value="{{buyer.buyerDob}}"
+                                [attr.disabled]="!editable?'':null" required />
+                        </div>
+                    </div><br><br>
+                    <div class="row">
+                        <div class="col-sm-3" *ngIf="editableSave">
+                            <button class="form-control" type="submit" (click)="saveProfile(gender.value,dob.value)">
+                                Save
+                            </button>
+
+                        </div>
+                        <div class="col-sm-3" *ngIf="editableEdit">
+                            <button class="form-control" type="submit" (click)="editProfile()">
+                                Edit
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-md-8" *ngIf="editableAddress">
+                <div class="profile-tab">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Home Address</label>
+                        </div>
+                        <div class="col-md-6">
+                            <textarea #address class="form-control" rows="5" id="comment"
+                                [attr.disabled]="!edithomeaddress?'':null">{{buyer.buyerHomeAddress}}</textarea>
+                        </div><br>
+                        <br>
+                    </div><br><br>
+                    <div class="row">
+                        <div class="col-sm-3" *ngIf="addressHomeSave">
+                            <input class="form-control" type="button" (click)="saveHomeAddress(address.value)"
+                                value="Save" />
+                        </div>
+                        <div class="col-sm-3" *ngIf="addressHomeEdit">
+                            <input class="form-control" type="button" (click)="editHomeAddress()" value="Edit" />
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Office Address</label>
+                        </div>
+                        <div class="col-md-6">
+                            <textarea class="form-control" rows="5" id="comment"
+                                [attr.disabled]="!editofficeaddress?'':null">{{buyer.buyerOfficeAddress}}</textarea>
+                        </div>
+                    </div><br>
+
+                    <div class="row">
+                        <div class="col-sm-3" *ngIf="addressOfficeSave">
+                            <input class="form-control" type="button" (click)="saveOfficeAddress(address.value)"
+                                value="Save" />
+                        </div>
+                        <div class="col-sm-3" *ngIf="addressOfficeEdit">
+                            <input class="form-control" type="button" (click)="editOfficeAddress()" value="Edit" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-tab  col-md-8" *ngIf="editableOrder">
+                <p>Ordered Product</p>
+                <div class="row">
+
+                    <div *ngFor="let product of buyer.incartProducts | slice:0:3; let i=index" class="col-sm-3 flex">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-text">ID:{{product.productId}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><br>
+
+                <div class=" profile-tab col-sm-3 btn-showmore">
+                    <button class="form-control" type="button">
+                        Show More
+                    </button>
+                </div>
+
+
+            </div>
+            <div class="col-md-8" *ngIf="editablePayment">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Shopper-Zoid Wallet</label>
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

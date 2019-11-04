@@ -1,0 +1,42 @@
+<section class="container">
+    <h3 class="mt-2 pt-1 mb-4">Update an existing Product!</h3>
+            <form [formGroup]="searchForm">                
+                <!-- <div class="col-auto">
+                   <i class="fas fa-search h4 text-body"></i>
+                    </div> -->
+                    <!--end of col-->
+                    <mat-form-field class="col">
+                        <label></label>
+                        <input matInput formControlName="name" placeholder="Search Product" required>
+                    </mat-form-field>
+                    <!--end of col-->
+                    <section class="wrapper">
+                        <button class="btn btn-info" type="submit" (click)="doSearch()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search</button>
+                    </section><br>
+                    <!--end of col-->                    
+            </form>    
+            <section *ngIf="valueSearch">
+                <h3>{{product.productName}}</h3>
+                <p>{{desc}}</p>
+            </section>
+            <!-- <section *ngIf="productDoesntExists">
+                <h3>The product does not exist in our database. 
+                    Please click on the add new product button</h3>
+            </section>             -->
+            <form [formGroup]="updateForm"> 
+               <mat-form-field>
+                    <input matInput type="number" formControlName="price" id="input1" placeholder="Enter Price in Rupees" required>
+               </mat-form-field><br>              
+                <mat-form-field>
+                    <input matInput type="number" formControlName="quantity" id="input2" placeholder="Enter Quantity" required>
+                </mat-form-field><br>
+                <section class="wrapper">
+                <button class="btn btn-primary" (click)="doUpdate()">Submit</button>
+                </section>
+            </form><br>
+              <p>-----OR-----</p>
+             <section class="add">
+                <button class="btn btn-success" (click)="goToAdd()">Add a New Product!</button>
+             </section>
+        <!--end of col-->
+</section>
